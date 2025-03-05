@@ -19,7 +19,7 @@
 ## Installation
 Clone the repository and install dependencies:
 ```sh
-git clone https://github.com/your-repo/prod-sync-api.git
+git clone https://github.com/vishalranaut/prod-sync-api.git
 cd prod-sync-api
 npm install
 ```
@@ -55,7 +55,4 @@ http://localhost:5004/api-docs
 
 ## License
 This project is licensed under the MIT License.
-
-## Author
-[Vishal](mailto:your-email@example.com)
 
