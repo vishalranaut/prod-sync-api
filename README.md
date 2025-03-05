@@ -56,6 +56,3 @@ http://localhost:5004/api-docs
 ## License
 This project is licensed under the MIT License.
 
-## Author
-[Vishal](mailto:your-email@example.com)
-
