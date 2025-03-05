@@ -19,7 +19,7 @@
 ## Installation
 Clone the repository and install dependencies:
 ```sh
-git clone https://github.com/your-repo/prod-sync-api.git
+git clone https://github.com/vishalranaut/prod-sync-api.git
 cd prod-sync-api
 npm install
 ```
