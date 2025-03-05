@@ -1,0 +1,169 @@
+openapi: 3.0.0
+info:
+  title: ProdSync API
+  description: API documentation for ProdSync
+  version: 1.0.0
+servers:
+  - url: http://localhost:5004
+
+paths:
+  /user/signup:
+    post:
+      summary: User Signup
+      description: Register a new user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                confirmPassword:
+                  type: string
+                name:
+                  type: string
+      responses:
+        200:
+          description: User registered successfully
+
+  /user/login:
+    post:
+      summary: User Login
+      description: Authenticate user and return token.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        200:
+          description: Login successful
+
+  /user/profile:
+    get:
+      summary: Get User Profile
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: User profile retrieved successfully
+    patch:
+      summary: Update User Profile
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        200:
+          description: User profile updated successfully
+
+  /product/create:
+    post:
+      summary: Create Product
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: Product created successfully
+
+  /product/list:
+    post:
+      summary: List Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                page:
+                  type: integer
+                limit:
+                  type: integer
+                search:
+                  type: string
+                category:
+                  type: string
+                minPrice:
+                  type: number
+                maxPrice:
+                  type: number
+      responses:
+        200:
+          description: Product list retrieved successfully
+
+  /product/{productId}:
+    get:
+      summary: Get Product Details
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Product details retrieved successfully
+    patch:
+      summary: Update Product
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                price:
+                  type: number
+      responses:
+        200:
+          description: Product updated successfully
+    delete:
+      summary: Delete Product
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Product deleted successfully
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
